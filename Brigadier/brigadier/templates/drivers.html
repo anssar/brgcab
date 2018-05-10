@@ -1,0 +1,31 @@
+﻿{% extends "base.html" %}
+{% load staticfiles %}
+{%block title%}
+Водители <div class="login">{%if login%}{{login}}{%endif%}</div>
+{%endblock%}
+{% block content %}
+<div class="page-info">
+    <form method="GET" action="/create_driver/">
+        <input type="submit" value="Создать водителя" />
+    </form>
+    <br><br>
+    {%if crews%}
+    <table class="drivers-table" border="1" width="100%">
+    <tr>
+        <td width="15%" align="center" height="40px">Поз</td>
+        <td width="35%" align="center" height="40px">ФИО</td>
+        <td width="35%" align="center" height="40px">Авто</td>
+        <td width="15%" align="center" height="40px">Пр</td>
+    </tr>
+    {% for crew in crews %}
+    <tr>
+        <td width="15%" align="center" height="40px"><a href="driver/{{crew.pk}}/">{{crew.code}}</a></td>
+        <td width="35%" align="center" height="40px"><a href="driver/{{crew.pk}}/">{{crew.driver.name}}</a></td>
+        <td width="35%" align="center" height="40px"><a href="driver/{{crew.pk}}/change?">{{crew.car.mark}} {{crew.car.color}} {{crew.car.gos_number}}</a></td>
+        <td width="15%" align="center" height="40px"><a href="driver/{{crew.pk}}/">{{crew.static_priority}}</a></td>
+    </tr>
+    {%endfor%}
+    </table>
+    {%endif%}
+</div>
+{% endblock %}

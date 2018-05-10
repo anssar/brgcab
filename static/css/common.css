@@ -1,0 +1,216 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    padding-top: 60px;
+    background-color: white;
+}
+
+.content-frame {
+    min-height: 100%;
+    margin-bottom: -50px;
+}
+
+.content {
+    margin-bottom: 100px;
+}
+
+.header-frame {
+    z-index: 1000;
+    line-height: 50px;
+    color: black;
+    width: 100%;
+    top: 0px;
+    height: 50px;
+    background-color: #D7DF01;
+    border-bottom: solid 1px #D7DF01;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 30px;
+    display: inline-block;
+    float: left;
+}
+
+.page-header {
+  padding-bottom: 9px;
+  margin: 30px 0 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.menu a, .menu a:visited, .menu a:hover {
+    color: black;
+}
+
+.menu ul {
+    list-style-type: none;
+}
+
+.button{
+    margin-top: 5px;
+    background: green;
+}
+
+.txt{
+    resize: none;
+    display:block;
+    width: 100%;
+}
+
+.signout{
+    display:block;
+    left: 80%;
+    position: absolute;
+}
+
+.exit a, .exit a:visited, .exit a:hover{
+    color: red;
+}
+
+#validation_alert, #gos_number_length_alert, #phone_length_alert{
+    color: red;
+    display: none;
+}
+
+.login{
+    font-weight: normal;
+    font-size: 20px;
+    display: inline-block;
+}
+
+.No-online{
+    font-size: 20px;
+}
+
+.drivers-table{
+    margin: 0px;
+}
+
+.drivers-table tr td{
+    padding: 0px;
+}
+
+@media (min-width: 1001px) {
+    .header-frame {
+        position: fixed;
+    }
+
+    .page-info {
+        font-size: 15px;
+        vertical-align: top;
+    }
+
+    .menu {
+        float: right;
+    }
+
+    .menu ul {
+        height: 50px;
+        line-height: 50px;
+        margin: 0px;
+        font-size: 15px;
+    }
+
+    .menu ul li {
+        padding: 0px 20px 0px 20px;
+        display: inline-block;
+        border-left: solid 1px #088A08;
+        border-right: solid 1px #088A08;
+    }
+
+    .menu ul:last-child {
+        border-right: solid 1px #088A08;
+    }
+
+    .menu ul li:hover {
+        background-color: #088A08;
+    }
+
+    .drop-menu {
+        display: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    .logo {
+        font-size: 20px;
+    }
+
+    .login{
+        font-size: 15px;
+    }
+
+    .page-info {
+        font-size: 20px;
+    }
+
+    .header-frame {
+        position: absolute;
+    }
+
+    .menu {
+        display: none;
+        position: absolute;
+        left: 0px;
+        top: 50px;
+        background-color: #D7DF01;
+        width: 100%;
+        text-align: center;
+        color: black;
+    }
+
+    .menu-visible {
+        display: block;
+    }
+
+    .menu ul {
+        margin: 0px;
+    }
+
+    .menu ul li {
+        border-bottom: solid 1px black;
+        border-top: solid 1px black;
+    }
+
+    .menu ul li:hover, .menu-active {
+        background-color: #088A08;
+    }
+
+    .drop-menu {
+        text-align: center;
+        line-height: 35px;
+        width: 35px;
+        height: 35px;
+        margin: 5px;
+        float: right;
+        border-radius: 7px;
+        background-color: #088A08;
+    }
+
+    .drop-menu:hover {
+        background-color: #00FF00;
+    }
+
+    .page-header {
+        padding-bottom: 5px;
+        margin: 20px 0 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .drivers-table tr td{
+        padding: 0px;
+        font-size: 12px;
+    }
+}

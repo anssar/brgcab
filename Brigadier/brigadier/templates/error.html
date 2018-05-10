@@ -1,0 +1,12 @@
+﻿{% extends "base.html" %}
+{% load staticfiles %}
+{%block title%}
+Ошибка <div class="login">{%if login%}{{login}}{%endif%}</div>
+{%endblock%}
+{% block content %}
+<div class="page-info">
+    {% if message %}
+    {{message}}
+    {% endif %}
+</div>
+{% endblock %}

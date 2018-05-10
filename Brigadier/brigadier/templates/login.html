@@ -1,0 +1,37 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="{%static "bootstrap/css/bootstrap.css" %}"/>
+    <link rel="stylesheet" href="{%static "css/common.css" %}" />
+    <!--[if lt IE 9]> 
+        <script type="text/javascript" src="{%static "scripts/respond.min.js" %}"></script>
+    <![endif]-->
+    <title>Brigadiers</title>
+</head>
+<body>
+    <div class="header-frame">
+        <div class="container header">
+            <div class="logo">Login</div>
+        </div>
+    </div>
+    <div class="container content-frame">
+        <div class="content">
+            <div class="page-info">
+                <form method="POST" action="signin">
+                    {% csrf_token %}
+                    Login: 
+                    <input name="login" placeholder="login" maxlength="100" class="txt" />
+                    <br>
+                    Password:
+                    <input type="password" name="pass" placeholder="password" maxlength="100" class="txt" />
+                    <br>
+                    <input type="submit" value="Login" />
+                </form>
+            </div>          
+        </div>
+    </div>
+</body>
+</html>

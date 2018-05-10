@@ -1,0 +1,56 @@
+﻿{% extends "base.html" %}
+{% load staticfiles %}
+{%block title%}
+Водитель <div class="login">{%if login%}{{login}}{%endif%}</div>
+{%endblock%}
+{% block content %}
+<div class="page-info">
+    {%if crew%}
+    <div style="display: inline-block">
+    <div class="record" style="display: inline-block">Id: <b>{{crew.driver.driver_id}}</b></div><br><br>
+    <div class="record" style="display: inline-block">Позывной: <b>{{crew.code}}</b></div></div><br><br>
+    <div class="record">Приоритет: <b>{{crew.static_priority}}</b></div><br>
+    <div class="record">Баланс: <b>{{crew.driver.balance}}</b></div><br>
+    <div class="record">Заблокирован: <b>{{crew.driver.is_locked |yesno:"да,нет,maybe"}}</b></div><br>
+    <form method="POST" action="save" onsubmit="return editionValidate();">
+        {% csrf_token %}
+        <div class="record">ФИО: 
+        <input name="name" maxlength="64" class="txt" id="name" value="{{crew.driver.name}}"/>
+        </div><br>
+        <div class="record">Телефон: 
+        <input name="phone" maxlength="11" class="txt" id="phone" value="{{crew.driver.mobile_phone}}"/>
+        </div><br>
+        <br>
+        Группа:
+        <select name="group">
+            {%if groups%}
+                {%for group in groups%}
+                    <option>{{group.group_id}} | {{group.name}}</option>
+                {%endfor%}
+            {%endif%}
+        </select>
+        <br>
+        <div id="phone_length_alert">В номере телефона должно быть 11 цифр!<br></div>
+        <div id="validation_alert">Заполните все поля!</div>
+        <br>
+        <input type="submit" value="Сохранить" id="saveButton"/><br><br>
+    </form>
+    <br>
+    <form method="GET" action="change">
+        <div class="record">Автомобиль: <b>{{crew.car.mark}} {{crew.car.color}} {{crew.car.gos_number}}</b>
+        </div><br>
+        <input type="submit" value="Изменить машину" />
+    </form>
+    <br>
+    <form method="POST" action="regenerate" onsubmit="return regenerateValidate();">
+        {% csrf_token %}
+        <div class="record">Пароль: <b>{{crew.driver.password}}</b>
+        </div><br>
+        <input type="submit" value="Изменить пароль" id="regenerateButton"/><br><br>
+    </form>
+    {%endif%}
+</div>
+{% endblock %}
+{%block exports%}
+<script language="javascript" src="{%static "scripts/validation.js" %}"></script>
+{%endblock%}

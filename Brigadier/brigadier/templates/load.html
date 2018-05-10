@@ -1,0 +1,25 @@
+﻿{% extends "base.html" %}
+{% load staticfiles %}
+{%block title%}
+Загрузка <div class="login">{%if login%}{{login}}{%endif%}</div>
+{%endblock%}
+{% block content %}
+<div class="page-info">
+    <form method="POST" action="loading" onsubmit="return loadValidate();">
+        {% csrf_token %}
+        Бригадир:
+        <select name="brigadier" required>
+        {%if brigadiers%}
+            {% for brigadier in brigadiers %}
+                <option>{{brigadier.login}} {{brigadier.pk}}</option>
+            {%endfor%}
+        {%endif%}
+        </select><br><br>
+        <textarea name="crews" rows="20"></textarea><br><br>
+        <input type="submit" value="Загрузить" id="loadButton"/><br><br>
+    </form>
+</div>
+{% endblock %}
+{%block exports%}
+<script language="javascript" src="{%static "scripts/validation.js" %}"></script>
+{%endblock%}

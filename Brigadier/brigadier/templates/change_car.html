@@ -1,0 +1,262 @@
+﻿{% extends "base.html" %}
+{% load staticfiles %}
+{%block title%}
+Машина <div class="login">{%if login%}{{login}}{%endif%}</div>
+{%endblock%}
+{% block content %}
+<div class="page-info">
+    <h3>Выбрать существующую машину:</h3><br>
+    <form method="POST" action="exist" onsubmit="return carExistValidate();">
+        {% csrf_token %}
+        Машина:
+        <select name="description" required style="text-align: right;">
+        {%if cars_d%}
+            {% for car in cars_d %}
+                <option>{{car.mark}} {{car.color}} {{car.gos_number}}</option>
+            {%endfor%}
+        {%endif%}
+        {%if cars%}
+            {% for car in cars %}
+                <option>{{car.car_id}} | {{car.mark}} {{car.color}} {{car.gos_number}}</option>
+            {%endfor%}
+        {%endif%}
+        </select><br><br>
+        <input type="submit" value="Изменить машину" id="carExistButton"/><br><br>
+    </form>
+    <h3>Создать новую машину:</h3><br>
+    <form method="POST" action="new" onsubmit="return carCreationValidate();">
+        {% csrf_token %}
+        Марка:
+        <select name="mark" required>
+            <option>Акура</option>
+            <option>Альфа_Ромео</option>
+            <option>Астон_мартин</option>
+            <option>Ауди</option>
+            <option>Баф</option>
+            <option>Бид</option>
+            <option>БМВ</option>
+            <option>Бриллианс</option>
+            <option>ВАЗ</option>
+            <option>Волга</option>
+            <option>Вольво</option>
+            <option>Вортекс</option>
+            <option>Газ</option>
+            <option>Гео</option>
+            <option>Грейт_Вол</option>
+            <option>Грузовая_Газель</option>
+            <option>Грузовой_Волдай</option>
+            <option>Грузовой_Даф-феникс</option>
+            <option>Грузовой_Даф</option>
+            <option>Грузовой_джак</option>
+            <option>Грузовой_ДжиЭМСи</option>
+            <option>Грузовой_Донг-венг</option>
+            <option>Грузовой_Иж_пикап</option>
+            <option>Грузовой_Митсубиси</option>
+            <option>Грузовой_Фиат</option>
+            <option>Грузовой_Фольцваген</option>
+            <option>Грузовой_Хендай</option>
+            <option>Дайхатс</option>
+            <option>Датсун</option>
+            <option>Дервейс</option>
+            <option>Джили</option>
+            <option>Джили_МК</option>
+            <option>Джип</option>
+            <option>ДжиЭмСи</option>
+            <option>Додж</option>
+            <option>Дэу</option>
+            <option>Дэу_Матиз</option>
+            <option>Дэу_Нексия</option>
+            <option>Жигули_4</option>
+            <option>Жигули_5</option>
+            <option>Жигули_6</option>
+            <option>Жигули_7</option>
+            <option>ЗАЗ</option>
+            <option>ЗИЛ</option>
+            <option>Игл</option>
+            <option>ИЖ</option>
+            <option>Инфинита</option>
+            <option>Иран_хондро</option>
+            <option>Исузу</option>
+            <option>Кадиллак</option>
+            <option>Камаз</option>
+            <option>Киа</option>
+            <option>Крайслер</option>
+            <option>Лада10</option>
+            <option>Лада11</option>
+            <option>Лада12</option>
+            <option>Лада13</option>
+            <option>Лада14</option>
+            <option>Лада15</option>
+            <option>Лада8</option>
+            <option>Лада9</option>
+            <option>Лада99</option>
+            <option>Лада_Веста</option>
+            <option>Лада_Гранта</option>
+            <option>Лада_Иксрей</option>
+            <option>Лада_Калина</option>
+            <option>Лада_Ларгус</option>
+            <option>Лада_Приора</option>
+            <option>Лексус</option>
+            <option>Лендвинд</option>
+            <option>Линкольн</option>
+            <option>Лифан</option>
+            <option>Лэнд_Ровер</option>
+            <option>ЛэндМарк</option>
+            <option>Мазда</option>
+            <option>Мазератти</option>
+            <option>Меркури</option>
+            <option>Мерседес</option>
+            <option>Микроавтобус_Баргузин</option>
+            <option>Микроавтобус_Газель</option>
+            <option>Микроавтобус_Мерседес</option>
+            <option>Микроавтобус_Опель</option>
+            <option>Микроавтобус_Пежо</option>
+            <option>Микроавтобус_Ссанг_Йонг</option>
+            <option>Микроавтобус_Тойота</option>
+            <option>Микроавтобус_Фольцваген</option>
+            <option>Микроавтобус_Форд</option>
+            <option>Микроавтобус_Хендай</option>
+            <option>Мини</option>
+            <option>Митсубиси</option>
+            <option>Москвич</option>
+            <option>Нива</option>
+            <option>Ниссан</option>
+            <option>Ока</option>
+            <option>Опель</option>
+            <option>Пежо</option>
+            <option>Пикап</option>
+            <option>Понтиак</option>
+            <option>Порше</option>
+            <option>Рено</option>
+            <option>Рено_Логан</option>
+            <option>Ровер</option>
+            <option>Ролс-Ройс</option>
+            <option>Сааб</option>
+            <option>Сайбер</option>
+            <option>Саманд_Сеат</option>
+            <option>Сатурн</option>
+            <option>СЕАЗ</option>
+            <option>Сеат</option>
+            <option>Ситроен</option>
+            <option>Смарт</option>
+            <option>Ссанг-Йонг</option>
+            <option>Субару</option>
+            <option>Сузуки</option>
+            <option>Тагаз</option>
+            <option>Тойота</option>
+            <option>УАЗ</option>
+            <option>УАЗ_Патриот</option>
+            <option>ФАУ</option>
+            <option>Феникс</option>
+            <option>Феррари</option>
+            <option>Фиат</option>
+            <option>Фольцваген</option>
+            <option>Форд</option>
+            <option>Хёндай_Солярис</option>
+            <option>Хёндай_Элантра</option>
+            <option>Хайма</option>
+            <option>Хаммер</option>
+            <option>Хендай</option>
+            <option>Холден</option>
+            <option>Хонда</option>
+            <option>Черри</option>
+            <option>Шевроле</option>
+            <option>Шкода</option>
+            <option>Эвакуатор</option>
+            <option>Ягуар</option>
+        </select>
+        <br><br>
+        Цвет:
+        <select name="color" required>
+            <option>баклажан</option>
+            <option>бордовая</option>
+            <option>бордовый</option>
+            <option>бежевая</option>
+            <option>бежевый</option>
+            <option>белая</option>
+            <option>белый</option>
+            <option>вишневая</option>
+            <option>вишневый</option>
+            <option>голубая</option>
+            <option>голубой</option>
+            <option>желтая</option>
+            <option>желтый</option>
+            <option>желто-зеленый</option>
+            <option>зеленая</option>
+            <option>зеленый</option>
+            <option>золотистая</option>
+            <option>золотистый</option>
+            <option>канареечная</option>
+            <option>канареечный</option>
+            <option>карбон</option>
+            <option>коричневая</option>
+            <option>коричневый</option>
+            <option>красная</option>
+            <option>красный</option>
+            <option>кремовая</option>
+            <option>кремовый</option>
+            <option>малиновая</option>
+            <option>малиновый</option>
+            <option>металик</option>
+            <option>морская_волна</option>
+            <option>оливковая</option>
+            <option>оливковый</option>
+            <option>оранжевая</option>
+            <option>оранжевый</option>
+            <option>песочная</option>
+            <option>песочный</option>
+            <option>розовая</option>
+            <option>розовый</option>
+            <option>салатовая</option>
+            <option>салатовый</option>
+            <option>светло-зеленая</option>
+            <option>светло-зеленый</option>
+            <option>светло-коричневая</option>
+            <option>светло-коричневый</option>
+            <option>светло-синий</option>
+            <option>светло-синяя</option>
+            <option>серая</option>
+            <option>серебристая</option>
+            <option>серебристый</option>
+            <option>сиреневый</option>
+            <option>серо-голубой</option>
+            <option>серо-зеленый</option>
+            <option>серый</option>
+            <option>сине-зеленый</option>
+            <option>синий</option>
+            <option>синяя</option>
+            <option>темно-вишневая</option>
+            <option>темно-вишневый</option>
+            <option>темно-голубая</option>
+            <option>темно-голубой</option>
+            <option>темно-зеленая</option>
+            <option>темно-зеленый</option>
+            <option>темно-коричневая</option>
+            <option>темно-коричневый</option>
+            <option>темно-серая</option>
+            <option>темно-серый</option>
+            <option>темно-синий</option>
+            <option>темно-синяя</option>
+            <option>темно-фиолетовая</option>
+            <option>темно-фиолетовый</option>
+            <option>фиолетовая</option>
+            <option>фиолетовый</option>
+            <option>хаки</option>
+            <option>цвет</option>
+            <option>черная</option>
+            <option>черный</option>
+        </select>
+        <br><br>
+        Гос. номер:
+        <input name="gos_number" placeholder="гос. номер" maxlength="3" class="txt" id="gos_number"/>
+        <br>
+        <div id="gos_number_length_alert">В гос. номере должно быть 3 цифры!<br></div>
+        <div id="validation_alert">Заполните все поля!</div>
+        <br>
+        <input type="submit" value="Создать машину" id="carCreationButton"/>
+    </form>
+</div>
+{% endblock %}
+{%block exports%}
+<script language="javascript" src="{%static "scripts/validation.js" %}"></script>
+{%endblock%}

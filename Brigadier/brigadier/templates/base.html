@@ -1,0 +1,45 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="{%static "bootstrap/css/bootstrap.css" %}"/>
+    <link rel="stylesheet" href="{%static "css/common.css" %}" />
+    <script language="javascript" src="{%static "scripts/menu.js" %}"></script>
+    {% block exports %}
+    {% endblock %}
+    <!--[if lt IE 9]> 
+        <script type="text/javascript" src="{%static "scripts/respond.min.js" %}"></script>
+    <![endif]-->
+    <title>Brigadiers</title>
+</head>
+<body>
+    <div class="header-frame">
+        <div class="container header">
+            <div class="logo">
+                {% block title %}
+                {% endblock %}
+            </div>
+            <div class="menu" id="menu" data-expand="false">
+                <ul>
+                    {%if links%}
+                    {% for menuLink in links %}
+                    <li class="{{menuLink.class_name}}"><a href="{{menuLink.link}}">{{menuLink.name}}</a></li>
+                    {%endfor%}
+                    {%endif%}
+                    {% block links %}
+                    {% endblock %}
+                </ul>
+            </div>
+            <div onclick="drop()" class="drop-menu"><span class="glyphicon glyphicon-menu-hamburger"></span></div>
+        </div>
+    </div>
+    <div class="container content-frame">
+        <div class="content">
+            {% block content %}
+            {% endblock %}            
+        </div>
+    </div>
+</body>
+</html>
